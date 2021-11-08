@@ -22,4 +22,6 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 
 });
-Route::get('test-query',[ProductControllerAPI::class,'testQuery']);
+Route::post('login',[ProductControllerAPI::class,'login']);
+Route::post('register',[ProductControllerAPI::class,'register']);
+Route::post('resetpassword',[ProductControllerAPI::class,'resetpassword']);
