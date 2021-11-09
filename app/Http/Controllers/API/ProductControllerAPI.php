@@ -5,19 +5,28 @@ namespace App\Http\Controllers\API;
 use App\Http\Controllers\Controller;
 
 use App\Models\product;
-use App\Models\logs;
-use App\Models\user;
-use Illuminati\Http\Request;
-use Illuminati\Support\Facades\Auths;
-use Illuminati\Support\Facade\Validator;
-use Illuminati\Support\Str;
+use App\Models\Logs;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Validator;
+use Flash;
+use Response;
+
 class ProductControllerAPI extends Controller{
 public function login(){
     if(Auth::attempt(['username' => request('username'),'password' => request('password')])){
-        $user = Authe::user();
+        $user = Auth::user();
         $success['token'] = Str::random(64);
         $success['name'] = $user->name;
         $success['username'] = $user->username;
+        $success['id']=$user->id;
+        $user->remember_token = $success['token'];
+        $user->save();
+        $logs = new Logs;
+        $logs->userid = $user->id;
+        $logs->log = "Login";
+        $logs->logdetails = "User $user->name has logged into my system";
         $logs->logtype = "API login";
         $logs->save();
         

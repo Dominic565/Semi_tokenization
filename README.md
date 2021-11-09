@@ -1,4 +1,4 @@
-<h1 align="center"><img src="https://assets.infyom.com/open-source/infyom-logo.png" alt="InfyOm"></h1>
+<h1 align="center"><img src="https://assets.infyom.com/open-source/infyom-logo.png" alt="MyAct"></h1>
 
 # Laravel Boilerplate for AdminLTE Theme
 
