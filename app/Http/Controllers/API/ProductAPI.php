@@ -51,7 +51,7 @@ class ProductAPI extends Controller {
         }
     }
 
-    public function searchShoes(Request $request) {
+    public function searchProduct(Request $request) {
         $token = $request['t']; // t = token
         $userid = $request['u']; // u = userid
         $pro_id = $request['pro_id']; // pro_id = pro id
@@ -62,7 +62,7 @@ class ProductAPI extends Controller {
             $product = Product::where('Description', 'LIKE', '%' . $product . '%')
                 ->orWhere('Brand', 'LIKE', '%' . $product . '%')
                 ->get();
-            // SELECT * FROM product  WHERE description LIKE '%productno%' OR title LIKE '%productno%'
+            // SELECT * FROM product  WHERE description LIKE '%productno%' OR title LIKE '%pro%'
             if ($product != null) {
                 return response()->json($product, $this->successStatus);
             } else {
