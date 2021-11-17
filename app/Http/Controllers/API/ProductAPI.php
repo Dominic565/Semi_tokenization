@@ -17,7 +17,7 @@ class ProductAPI extends Controller {
     public $successStatus = 200;
 
     public function getAllPosts(Request $request) {
-        $token = $request['t']; // t = token
+        $token = $request['t']; 
         $userid = $request['u']; // u = userid
 
         $user = User::where('id', $userid) ->where('remember_token', $token)->first();
